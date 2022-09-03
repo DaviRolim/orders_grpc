@@ -1,0 +1,29 @@
+syntax = "proto3";
+package order;
+service  Order {
+  // Send Order TODO (Starting with just one item, later change to receive a list of items)
+  rpc SendOrder (OrderRequest) returns (OrderReply) {}
+  rpc ListOrder (Empty) returns (stream OrderRequest) {}
+  rpc DeleteOrder (OrderId) returns (OrderReply) {}
+  rpc UpdateOrder (OrderRequest) returns (OrderReply) {}
+}
+
+message Empty {}
+
+message OrderId {
+  string id = 1;
+}
+
+message OrderRequest {
+  string id = 1;
+  string name = 2;
+  float price = 3;
+  int32 quantity = 4;
+}
+
+message OrderReply {
+  int32 status = 1;
+  string message = 2;
+}
+
+
